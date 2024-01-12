@@ -3,8 +3,6 @@ import Home from '../screens/Home';
 import Bio from '../screens/Bio';
 import Chat from '../screens/Chat';
 import Conversation from '../screens/Conversation';
-import Register from '../screens/Register';
-
 import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome'
 import { faHome,faComment, faUser } from '@fortawesome/free-solid-svg-icons';
 
@@ -17,7 +15,7 @@ function MyTabs() {
     <Tab.Navigator>
         <Tab.Screen 
             name="Home" 
-            component={Conversation}
+            component={Home}
             options={{
             tabBarIcon: ({ color, size }) => (
               <FontAwesomeIcon icon={faHome} size={size} color={color} />
@@ -37,7 +35,7 @@ function MyTabs() {
         />
         <Tab.Screen 
             name="Bio" 
-            component={Register} 
+            component={Conversation} 
             options={{
                 tabBarIcon: ({ color, size }) => (
                   <FontAwesomeIcon icon={faUser} size={size} color={color} />
