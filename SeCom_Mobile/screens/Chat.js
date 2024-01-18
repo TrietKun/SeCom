@@ -45,7 +45,7 @@ const Chat = ({navigation}) => {
             paddingLeft={40}
             opacity={0.5}
             onFocus={() => {
-                setOpacity(1);
+                // setOpacity(1);
             }}
           />
       </View>
@@ -86,12 +86,11 @@ const styles = StyleSheet.create({
     container: {
         width: '100%',
         height: '100%',
-        backgroundColor: '#C4B8E6',
         alignItems: 'center',
+        backgroundColor : 'black'
       },
     customHeader: {
         height: 50, 
-        // backgroundColor: '#3498db', 
         backgroundColor: '#CC8EE6',
         alignItems: 'center',
         flexDirection: 'row',
@@ -120,7 +119,7 @@ const styles = StyleSheet.create({
       users : {
           width: '100%',
           height: 80,
-          backgroundColor: '#C4B8E6',
+          backgroundColor : 'black',
           flexDirection: 'row',
           alignItems: 'center',
           justifyContent: 'flex-start',

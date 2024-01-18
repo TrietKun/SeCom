@@ -12,7 +12,6 @@ const Register = () => {
     const register = () => {
         createUserWithEmailAndPassword(auth, email, password)
           .then((userCredential) => {
-              // Registered
               const user = userCredential.user;
               updateProfile(user, {
                   displayName: name,

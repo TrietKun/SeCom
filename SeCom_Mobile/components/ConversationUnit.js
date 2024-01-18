@@ -15,9 +15,11 @@ const ConversationUnit = () => {
         <Text style={{
             fontSize: 16,
             fontWeight: 'bold',
+            color: '#808080',
         }}>User 1</Text>
         <Text style={{
             fontSize: 12,
+            color: '#808080',
         }}>New message</Text>
        
         </View>
@@ -36,9 +38,13 @@ const styles = StyleSheet.create({
         width: width * 0.97,
         height: 70,
         alignItems: 'center',
-        backgroundColor: '#BEE3BC',
+        backgroundColor: 'black',
         marginVertical: 5,
         borderRadius: 10,
         flexDirection: 'row',
+        color: '#fff',
+        borderColor: '#808080',
+        borderBottomWidth : 1,
+        
     },
 })

@@ -150,7 +150,7 @@ const styles = StyleSheet.create({
   inputUserNameContainer : {
     width : '90%',
     height : 50,
-    backgroundColor: 'rgba(255, 255, 255, 0.5)', // Màu nền với độ mờ (0.5 là 50% mờ)
+    backgroundColor: 'rgba(255, 255, 255, 0.5)', 
     borderRadius : 10,
     alignSelf : 'center',
     elevation : 30,
@@ -158,7 +158,7 @@ const styles = StyleSheet.create({
   inputPasswordContainer :{
     width : '90%',
     height : 50,
-    backgroundColor: '#ffffff80', // Mã màu hex với độ mờ (80 là 50% mờ)
+    backgroundColor: '#ffffff80', 
     borderRadius : 10,
     alignSelf : 'center',
     marginTop : 20,
@@ -186,7 +186,6 @@ const styles = StyleSheet.create({
     width : '100%',
     height : 50,
     backgroundColor : 'transparent',
-    // marginTop : 20,
     flexDirection : 'row',
     alignItems : 'center',
     justifyContent : 'center',
