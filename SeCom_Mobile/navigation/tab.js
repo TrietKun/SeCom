@@ -4,6 +4,7 @@ import Bio from '../screens/Bio';
 import Chat from '../screens/Chat';
 import Conversation from '../screens/Conversation';
 import VideoCall from '../screens/VideoCall';
+import EditProfile from '../screens/EditProfile';
 
 import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome'
 import { faHome,faComment, faUser, faPhone } from '@fortawesome/free-solid-svg-icons';
@@ -30,7 +31,7 @@ function MyTabs() {
     >
         <Tab.Screen 
             name="Home" 
-            component={Home}
+            component={EditProfile}
             options={{
             tabBarIcon: ({ color }) => (
               <FontAwesomeIcon icon={faHome} size={25} color={color} />
@@ -58,7 +59,7 @@ function MyTabs() {
                 tabBarShowLabel: false,
             }}
         />
-           <Tab.Screen 
+           {/* <Tab.Screen 
             name="VideoCall" 
             component={VideoCall} 
             options={{
@@ -67,7 +68,7 @@ function MyTabs() {
                 ),
                 tabBarShowLabel: false,
             }}
-        />
+        /> */}
         
     </Tab.Navigator>
   );

@@ -3,13 +3,19 @@ import React from 'react'
 import Avatar from './Avatar';
 import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome'
 import { faCircleCheck } from '@fortawesome/free-solid-svg-icons';
+import { useNavigation } from '@react-navigation/native';
 
 const heigh = Dimensions.get('window').height;
 const width = Dimensions.get('window').width;
 
 const ConversationUnit = () => {
+
+const navigation = useNavigation();
+
   return (
-    <TouchableOpacity style={styles.container}>
+    <TouchableOpacity 
+    onPress={() => navigation.navigate('Conversation')}
+    style={styles.container}>
         <Avatar />
         <View>
         <Text style={{

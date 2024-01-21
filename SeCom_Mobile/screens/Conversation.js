@@ -2,9 +2,10 @@ import React, { useCallback, useState, useLayoutEffect } from 'react';
 import { View, Text, StyleSheet, TouchableOpacity, Dimensions } from 'react-native';
 import { GiftedChat , Composer } from 'react-native-gifted-chat';
 import { Avatar } from 'react-native-elements';
-import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome'
-import { faPhone,faCamera, faInfo, faCircleInfo } from '@fortawesome/free-solid-svg-icons';
+import { faPhone,faCamera, faInfo, faCircleInfo, faArrowLeft } from '@fortawesome/free-solid-svg-icons';
 import ChatData from '../data/dataChat';
+import { Icon } from 'react-native-elements'
+import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome';
 
 const { width, height } = Dimensions.get('screen');
 
@@ -23,17 +24,29 @@ const Chat = ({ navigation }) => {
                 <View style={{
                     flexDirection: 'row',
                     alignItems: 'center',
-                    marginLeft: 10,
+                    marginLeft: 40,
                 }}>
                     <Avatar rounded source={require('../assets/logo2.png')} />
                     <Text style={styles.headerText}>Kazuha</Text>
+                </View>
+                <View style={{
+                    position: 'absolute',
+                    marginLeft: 10,
+                }}>
+                    <TouchableOpacity
+                      onPress={() => navigation.navigate('Chat')}
+                    >
+                        <FontAwesomeIcon icon={faArrowLeft} size={20} color="#fff" style={styles.iconHeader} />
+                    </TouchableOpacity>
                 </View>
                 <View style={{
                     flexDirection: 'row',
                     alignItems: 'center',
                     marginLeft: 10,
                 }}>
-                    <FontAwesomeIcon icon={faPhone} size={20} color="#fff" style={styles.iconHeader} />
+                    <TouchableOpacity>
+                      <FontAwesomeIcon icon={faPhone} size={20} color="#fff" style={styles.iconHeader} />
+                    </TouchableOpacity>
                     <FontAwesomeIcon icon={faCamera} size={20} color="#fff" style={styles.iconHeader} />
                     <FontAwesomeIcon icon={faCircleInfo} size={20} color="#fff" style={styles.iconHeader} />
                 </View>
@@ -107,7 +120,6 @@ const styles = StyleSheet.create({
         height: '100%',
         alignItems: 'center',
         justifyContent: 'center',
-        backgroundColor: 'pink'
     },
     bubble: {
         backgroundColor: 'red',
