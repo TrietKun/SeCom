@@ -4,10 +4,15 @@ import Post from '../components/Post'
 import listPost from '../data/ListPost'
 import listUser from '../data/dataUser'
 
+import {useNavigation} from '@react-navigation/native';
+
 const height = Dimensions.get('window').height;
 const width = Dimensions.get('window').width;
 
 const Bio = () => {
+
+const navigation = useNavigation();
+
   return (
     <ScrollView 
     lazyLoad={true}
@@ -31,7 +36,9 @@ const Bio = () => {
           <Text style={styles.profileText}>Address</Text>
           <Text style={styles.profileText}>Phone</Text>
           <Text style={styles.profileText}>Email</Text>
-          <TouchableOpacity style={styles.editProfileButton}>
+          <TouchableOpacity 
+          onPress={() => navigation.navigate('EditProfile')}
+          style={styles.editProfileButton}>
             <Text style={{textAlign: 'center', marginTop: 5,fontSize : 15}}>Edit Profile</Text>
           </TouchableOpacity>
         </View>

@@ -1,26 +1,36 @@
-import { StyleSheet, Text, View, Dimensions } from 'react-native'
+import { StyleSheet, Text, View, Dimensions , TouchableOpacity} from 'react-native'
 import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome'
 import { faCirclePlus, faMagnifyingGlass, faComment } from '@fortawesome/free-solid-svg-icons';
 import { Image } from 'react-native';
 import React from 'react'
+import { useNavigation } from '@react-navigation/native';
 
 const height = Dimensions.get('window').height;
 const width = Dimensions.get('window').width;
 
 const Header = () => {
+
+const navigation = useNavigation();
+
   return (
     <View style={styles.container}>
        <View style={styles.customHeader}>
           <Image source={require('../assets/logoSec.png')} style={{width: 60, height: 30, marginLeft: 20}} />
           <View style={{
             flexDirection: 'row',
-            width: 100,
+            width: 60,
             justifyContent: 'space-between',
             marginRight: 20,
           }}>
-            <FontAwesomeIcon icon={faCirclePlus} size={25} color="#808080" style={styles.iconHeader} />
-            <FontAwesomeIcon icon={faMagnifyingGlass} size={25} color="#808080" style={styles.iconHeader} />
-            <FontAwesomeIcon icon={faComment} size={25} color="#808080" style={styles.iconHeader} />
+            <TouchableOpacity>
+              <FontAwesomeIcon icon={faCirclePlus} size={25} color="#808080" style={styles.iconHeader} />
+            </TouchableOpacity>
+            <TouchableOpacity
+              onPress={() => navigation.navigate('Search')}
+            >
+              <FontAwesomeIcon icon={faMagnifyingGlass} size={25} color="#808080" style={styles.iconHeader} />
+            </TouchableOpacity>
+            {/* <FontAwesomeIcon icon={faComment} size={25} color="#808080" style={styles.iconHeader} /> */}
           </View>
         </View>
     </View>

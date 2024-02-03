@@ -1,13 +1,19 @@
-import { StyleSheet, Text, View, TouchableOpacity, Dimensions, Image,ScrollView } from 'react-native'
+import { StyleSheet, Text, View, TouchableOpacity, Dimensions, Image,ScrollView, TextInput } from 'react-native'
 import React, {useEffect} from 'react'
 import Header from './HeaderStack';
 import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome'
-import { faHome, faGraduationCap, faHeart, faLocationDot, faBriefcase} from '@fortawesome/free-solid-svg-icons';
+import { faHome, faGraduationCap, faHeart, faBriefcase, faArrowAltCircleLeft} from '@fortawesome/free-solid-svg-icons';
+import { Modal, Portal, Button, PaperProvider } from 'react-native-paper';
 
 const height = Dimensions.get('window').height;
 const width = Dimensions.get('window').width;
 
 const UpdateInfo = ( {navigation} ) => {
+
+  const [visible, setVisible] = React.useState(false);
+
+  const showModal = () => setVisible(true);
+  const hideModal = () => setVisible(false);
 
   useEffect(() => {
     navigation.setOptions({
@@ -32,7 +38,7 @@ const UpdateInfo = ( {navigation} ) => {
               onPress={() => {
                 navigation.goBack();
               }}>
-              <FontAwesomeIcon icon={faHome} size={25} color={'#fff'} />
+              <FontAwesomeIcon icon={faArrowAltCircleLeft} size={25} color={'#fff'} />
             </TouchableOpacity>
           </View>
         )
@@ -41,7 +47,7 @@ const UpdateInfo = ( {navigation} ) => {
   }, [navigation])
 
   return (
-    <View 
+    <PaperProvider 
     style={styles.container}>
       <ScrollView 
       lazyLoad={true}
@@ -107,7 +113,9 @@ const UpdateInfo = ( {navigation} ) => {
               fontSize: 15,
             }}
           >Tiểu sử</Text>
-          <TouchableOpacity>
+          <TouchableOpacity
+            onPress={showModal}
+          >
             <Text style={{
                 color: '#55c1dd',
                 fontWeight: 'bold',
@@ -201,6 +209,9 @@ const UpdateInfo = ( {navigation} ) => {
          </View>
       </View>
       <TouchableOpacity
+        onPress={() => {
+          navigation.goBack();
+        }}
         style={styles.saveButton}
       >
         <Text style={{
@@ -210,7 +221,29 @@ const UpdateInfo = ( {navigation} ) => {
         }}>Lưu</Text>
       </TouchableOpacity>
       </ScrollView>
-    </View>
+
+      <Portal>
+        <Modal visible={visible} onDismiss={hideModal} contentContainerStyle={styles.modal}>
+          <Text
+            style={{
+              color: '#000',
+              fontWeight: 'bold',
+              fontSize: 15,
+              padding: 10,
+            }}
+          >Thêm tiểu sử</Text>
+          <TextInput
+            multiline={true}
+            numberOfLines={10}
+            maxLength={200}
+            style={styles.inputBio}
+          >
+            
+          </TextInput>
+        </Modal>
+      </Portal>
+
+    </PaperProvider>
   )
 }
 
@@ -321,5 +354,22 @@ const styles = StyleSheet.create({
       alignItems: 'center',
       marginTop: 20,
       justifyContent: 'center',
-    }
+    },
+    modal: {
+      width: '95%',
+      height: 300,
+      alignSelf: 'center',
+      backgroundColor: 'white',
+      justifyContent: 'flex-start',
+  },
+  inputBio :{
+      width: '95%',
+      height: 200,
+      backgroundColor: '#add8e6',
+      alignSelf: 'center',
+      borderRadius: 5,
+      textAlignVertical: 'top',
+      borderRadius: 15,
+      padding: 10,
+  }
 })
