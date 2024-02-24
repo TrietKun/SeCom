@@ -4,11 +4,14 @@ import Header from './HeaderStack';
 import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome'
 import { faHome, faGraduationCap, faHeart, faBriefcase, faArrowAltCircleLeft} from '@fortawesome/free-solid-svg-icons';
 import { Modal, Portal, Button, PaperProvider } from 'react-native-paper';
+import { useNavigation } from '@react-navigation/native';
 
 const height = Dimensions.get('window').height;
 const width = Dimensions.get('window').width;
 
-const UpdateInfo = ( {navigation} ) => {
+const UpdateInfo = ( ) => {
+
+  const navigation = useNavigation();
 
   const [visible, setVisible] = React.useState(false);
 
@@ -70,7 +73,11 @@ const UpdateInfo = ( {navigation} ) => {
               fontSize: 15,
             }}
           >Ảnh đại diện</Text>
-          <TouchableOpacity>
+          <TouchableOpacity
+            onPress={() => {
+              navigation.navigate('ChooseImage');
+            }}
+          >
             <Text style={{
                 color: '#55c1dd',
                 fontWeight: 'bold',
@@ -92,7 +99,11 @@ const UpdateInfo = ( {navigation} ) => {
               fontSize: 15,
             }}
           >Ảnh bìa</Text>
-          <TouchableOpacity>
+          <TouchableOpacity
+            onPress={() => {
+              navigation.navigate('ChooseImage');
+            }}
+          >
             <Text style={{
                 color: '#55c1dd',
                 fontWeight: 'bold',

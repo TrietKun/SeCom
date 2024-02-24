@@ -5,19 +5,47 @@ import LinearGradient from 'react-native-linear-gradient';
 import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome'
 import { faComment, faShare, faThumbsUp, faHeart } from '@fortawesome/free-solid-svg-icons';
 
+import { useSelector } from 'react-redux';
+
 const Post = (props) => {
+
+  const mode = useSelector((state) => state.mode.mode);
+  const colors = useSelector((state) => {
+    switch (mode) {
+      case 'dark':
+        return state.theme.darkColors;
+      case 'light':
+        return state.theme.lightColors;
+      default:
+        return state.theme.defaultColors;
+    }
+  });
 
 const {title, description, image, content, userName} = props;
 
   return (
     <View 
-      style={styles.background}>
-      <View style={styles.container}>
-      <View style={{flexDirection : 'row', justifyContent : 'space-between', alignItems : 'center'}}>
-        <Text style={styles.userName}>{userName}</Text>
-        <Text style={{marginRight : 10,color : '#C0C0C0'}}>{description}</Text>
+      style={[
+        {backgroundColor : colors.background},
+        styles.background]}>
+      <View style={[
+        {backgroundColor : colors.card},
+        styles.container]}>
+      <View style={{
+        flexDirection : 'row', 
+        justifyContent : 'space-between', 
+        alignItems : 'center',
+        }}>
+        <Text style={[
+          {color : colors.text},
+          styles.userName]}>{userName}</Text>
+        <Text style={[
+          {color : colors.text},
+          {marginRight : 10}]}>{description}</Text>
       </View>
-      <Text style={styles.content}>{content}</Text>
+      <Text style={[
+        {color : colors.text},
+        styles.content]}>{content}</Text>
       <Image
         style={styles.image}
         source={image}
@@ -25,29 +53,39 @@ const {title, description, image, content, userName} = props;
       <View style={styles.status}>
         <View style={styles.unitStatus}>
           <FontAwesomeIcon icon={faThumbsUp} size={20} color="#808080"  />
-          <Text style={styles.unitStatusText}>1.2k</Text>
+          <Text style={[
+            {color : colors.text},
+            styles.unitStatusText]}>1.2k</Text>
         </View>
         <View style={styles.unitStatus}>
-          <Text style={styles.unitStatusText}>1.2k Comments</Text>
+          <Text style={[
+            {color : colors.text},
+            styles.unitStatusText]}>1.2k Comments</Text>
         </View>
       </View>
       <View style={styles.operation}>
         <TouchableOpacity>
           <View style={styles.unitStatus}>
             <FontAwesomeIcon  icon={faThumbsUp} size={25} color="#808080"/>
-            <Text style={styles.unitStatusText}>Like</Text>
+            <Text style={[
+              {color : colors.text},
+              styles.unitStatusText]}>Like</Text>
           </View>
         </TouchableOpacity>
         <TouchableOpacity>
           <View style={styles.unitStatus}>
             <FontAwesomeIcon  icon={faComment} size={25} color="#808080"/>
-            <Text style={styles.unitStatusText}>Like</Text>
+            <Text style={[
+              {color : colors.text},
+              styles.unitStatusText]}>Comments</Text>
           </View>
         </TouchableOpacity>
         <TouchableOpacity>
           <View style={styles.unitStatus}>
             <FontAwesomeIcon  icon={faShare} size={25} color="#808080"/>
-            <Text style={styles.unitStatusText}>Like</Text>
+            <Text style={[
+              {color : colors.text},
+              styles.unitStatusText]}>Share</Text>
           </View>
         </TouchableOpacity>
       </View>
@@ -60,7 +98,7 @@ export default Post
 
 const styles = StyleSheet.create({
   background : {
-    backgroundColor : 'black',
+    // backgroundColor : 'black',
     width : '100%',
     alignItems : 'center',
     justifyContent : 'center',
@@ -69,7 +107,6 @@ const styles = StyleSheet.create({
     
   },
   container: {
-    backgroundColor : '#3c3c3c',
     width : '95%',
     height : 'fit-content',
     marginVertical : 10,
@@ -82,17 +119,17 @@ const styles = StyleSheet.create({
   userName : {
     fontSize : 20,
     fontWeight : 'bold',
-    color : '#C0C0C0',
+    // color : '#C0C0C0',
     marginHorizontal : 10,
   },
   content : {
     fontSize : 15,
-    color : '#C0C0C0',
+    // color : '#C0C0C0',
     marginHorizontal : 10,
     marginBottom : 10,
   },
   image : {
-    width : '100%',
+    width : '95%',
     height : 200,
     alignSelf : 'center',
   },
@@ -107,7 +144,7 @@ const styles = StyleSheet.create({
     fontFamily: 'Gill Sans',
     textAlign: 'center',
     margin: 10,
-    color: 'white',
+    // color: 'white',
     backgroundColor: 'transparent',
   },
   status : {
@@ -118,7 +155,7 @@ const styles = StyleSheet.create({
     marginTop : 10,
     borderBottomWidth : 1,
     paddingBottom : 10,
-    borderColor : 'gray',
+    // borderColor : 'gray',
   },
   operation :{
     flexDirection : 'row',
@@ -133,6 +170,6 @@ const styles = StyleSheet.create({
   },
   unitStatusText : {
     marginLeft : 5,
-    color : '#C0C0C0',
+    // color : '#C0C0C0',
   }
 })

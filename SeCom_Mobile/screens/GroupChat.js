@@ -4,40 +4,23 @@ import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome'
 import { faPen, faMagnifyingGlass, faUser } from '@fortawesome/free-solid-svg-icons';
 import ConversationUnit from '../components/ConversationUnit';
 import DataUser from '../data/dataUser';
+import DataGroupChat from '../data/dataGroupChat';
 import Avatar from '../components/Avatar';
-import DataChat from '../data/dataChat';
-
-import { useSelector } from 'react-redux';
 
 const heigh = Dimensions.get('window').height;
 const width = Dimensions.get('window').width;
 
-const Chat = ({navigation}) => {
-
-  const mode = useSelector((state) => state.mode.mode);
-  const colors = useSelector((state) => {
-    switch (mode) {
-      case 'dark':
-        return state.theme.darkColors;
-      case 'light':
-        return state.theme.lightColors;
-      default:
-        return state.theme.defaultColors;
-    }
-  }
-  );
-
+const GroupChat = () => {
   return (
-    <View style={[
-      {backgroundColor : colors.background},
-      styles.container]}>
+    <View style={styles.container}>
+ <View style={styles.container}>
       <View style={{
           width: '100%',
           height: 50,
           justifyContent: 'center',
           
       }}>
-          <FontAwesomeIcon icon={faMagnifyingGlass} size={20} color="white" style={{
+          <FontAwesomeIcon icon={faMagnifyingGlass} size={20} color="#001f3f" style={{
               position: 'absolute',
               top: 15,
               left: 25,
@@ -54,47 +37,49 @@ const Chat = ({navigation}) => {
             }}
           />
       </View>
-      <View style={[
-        {backgroundColor : colors.background},
-        styles.users]}>
+      <View style={styles.users}>
       <FlatList
-        data={DataUser}
+        data={DataGroupChat}
         showsHorizontalScrollIndicator = {false}
         renderItem={({item}) => (
-            <Avatar  />
+            <Avatar
+                image={item.image}
+            />
         )}
-        keyExtractor={item => item.userId}
+        keyExtractor={item => item.id}
         horizontal={true}
       />
       </View>
       <View style={{
           width: '100%',
-          height: heigh * 0.6,
+          height: heigh * 0.7,
           alignItems: 'center',
       }}>
         <FlatList
-          data={DataChat}
+          data={DataGroupChat}
           renderItem={({item}) => (
             <ConversationUnit
-              name={item.user.name}
-              avatar={item.user.avatar}
-              newMess={item.text}
+              name={item.name}
+              avatar={item.image}
+              newMess={item.lastMessage.message}
             />
           )}
-          keyExtractor={item => item._id}
+          keyExtractor={item => item.id}
         />
       </View>
+    </View>    
     </View>
   )
 }
 
-export default Chat
+export default GroupChat
 
 const styles = StyleSheet.create({
     container: {
         width: '100%',
         height: '100%',
         alignItems: 'center',
+        backgroundColor : 'black'
       },
     customHeader: {
         height: 50, 
@@ -126,6 +111,7 @@ const styles = StyleSheet.create({
       users : {
           width: '100%',
           height: 80,
+          backgroundColor : 'black',
           flexDirection: 'row',
           alignItems: 'center',
           justifyContent: 'flex-start',
@@ -136,7 +122,7 @@ const styles = StyleSheet.create({
       inputSearch :{
         width: '97%',
         height: 40,
-        backgroundColor: '#808080',
+        backgroundColor: '#E0E0E0',
         padding: 5,
         alignSelf: 'center',
         borderRadius: 30,

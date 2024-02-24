@@ -2,6 +2,7 @@ import { StyleSheet, Text, View , TouchableOpacity} from 'react-native'
 import React from 'react'
 import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome'
 import { faUser } from '@fortawesome/free-solid-svg-icons';
+import { Image } from 'react-native-elements';
 
 const Avata = (props) => {
 
@@ -11,6 +12,11 @@ const {size, image, status, newMess} = props;
     <View>
       <TouchableOpacity style={styles.container}>
         <FontAwesomeIcon icon={faUser} size={30} color="#fff" />
+        {/* <Image source={image} style={{
+          width: 60,
+          height: 60,
+          borderRadius: 30,
+        }} /> */}
       </TouchableOpacity>
       <View style={styles.status}>
 

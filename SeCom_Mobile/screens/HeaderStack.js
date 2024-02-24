@@ -5,15 +5,32 @@ import { Image } from 'react-native';
 import React from 'react'
 import { useNavigation } from '@react-navigation/native';
 
+import { useSelector } from 'react-redux';
+
 const height = Dimensions.get('window').height;
 const width = Dimensions.get('window').width;
 
 const Header = () => {
 
+const mode = useSelector((state) => state.mode.mode);
+const colors = useSelector((state) => {
+  switch (mode) {
+    case 'dark':
+      return state.theme.darkColors;
+    case 'light':
+      return state.theme.lightColors;
+    default:
+      return state.theme.defaultColors;
+  }
+});
+
+
 const navigation = useNavigation();
 
   return (
-    <View style={styles.container}>
+    <View style={[
+      {backgroundColor : colors.background},
+      styles.container]}>
        <View style={styles.customHeader}>
           <Image source={require('../assets/logoSec.png')} style={{width: 60, height: 30, marginLeft: 20}} />
           <View style={{
@@ -23,14 +40,13 @@ const navigation = useNavigation();
             marginRight: 20,
           }}>
             <TouchableOpacity>
-              <FontAwesomeIcon icon={faCirclePlus} size={25} color="#808080" style={styles.iconHeader} />
+              <FontAwesomeIcon icon={faCirclePlus} size={25} color={colors.icon} style={styles.iconHeader} />
             </TouchableOpacity>
             <TouchableOpacity
               onPress={() => navigation.navigate('Search')}
             >
-              <FontAwesomeIcon icon={faMagnifyingGlass} size={25} color="#808080" style={styles.iconHeader} />
+              <FontAwesomeIcon icon={faMagnifyingGlass} size={25} color={colors.icon} style={styles.iconHeader} />
             </TouchableOpacity>
-            {/* <FontAwesomeIcon icon={faComment} size={25} color="#808080" style={styles.iconHeader} /> */}
           </View>
         </View>
     </View>
@@ -44,13 +60,11 @@ const styles = StyleSheet.create({
         width: width,
         height: 50,
         alignItems: 'center',
-        backgroundColor: '#3c3c3c',
-      
     },
     customHeader: {
         height: 50, 
         width: width,
-        backgroundColor: '#3c3c3c',
+        // backgroundColor: '#3c3c3c',
         alignItems: 'center',
         flexDirection: 'row',
         justifyContent: 'space-between',

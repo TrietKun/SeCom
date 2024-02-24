@@ -15,10 +15,24 @@ import Post from '../components/Post'
 import listPost from '../data/ListPost'
 import listUser from '../data/List_user'
 
+import { useSelector, useDispatch } from 'react-redux';
+
 const height = Dimensions.get('window').height;
 const width = Dimensions.get('window').width;
 
 const Home = ({ navigation }) => {
+
+  const mode = useSelector((state) => state.mode.mode);
+  const colors = useSelector((state) => {
+    switch (mode) {
+      case 'dark':
+        return state.theme.darkColors;
+      case 'light':
+        return state.theme.lightColors;
+      default:
+        return state.theme.defaultColors;
+    }
+  });
 
   useLayoutEffect(() => {
     navigation.setOptions({
@@ -28,7 +42,9 @@ const Home = ({ navigation }) => {
   }, [navigation]);
 
   return (
-    <View style={styles.container}>
+    <View style={[
+      {backgroundColor : colors.background},
+      styles.container]}>
       <View style={styles.scrollContainer}>
             <ScrollView
               lazyLoad={true}

@@ -1,56 +1,82 @@
-import * as React from 'react';
+import React from 'react';
 import { Chip } from 'react-native-paper';
-import { TextInput, View } from 'react-native';
-import { StyleSheet } from 'react-native';
+import { TextInput, View,TouchableOpacity,StyleSheet } from 'react-native';
 import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome'
-import { faCheck } from '@fortawesome/free-solid-svg-icons';
+import { faCheck, faCar, faCake , faDashboard, faFaceAngry, faArrowLeft} from '@fortawesome/free-solid-svg-icons';
+import { useNavigation } from '@react-navigation/native'; 
 
-
-const MyComponent = () => (
-  <View style={{
-    flexDirection: 'row',
-    flexWrap: 'wrap',
-    alignItems: 'flex-start',
-    width: '95%',
-  }}>
-    <TextInput style={{
-      height: 40,
-      width: '100%',
-      margin: 12,
-      borderWidth: 1,
-      padding: 10,
-      borderRadius: 10,
-      alignSelf: 'center',
-    
-    }}>
-
-    </TextInput>
+const Search = () => {
+const navigation = useNavigation();
+return (
+  <View style={styles.container}>
+    <View style={styles.headerContainer}>
+      <TouchableOpacity
+        onPress={() => navigation.goBack()}
+      >
+        <FontAwesomeIcon icon={faArrowLeft} size={30} color="white" />
+      </TouchableOpacity>
+      <TextInput style={styles.textInput}></TextInput>
+    </View>
   <View style={{
     flexDirection: 'row',
     flexWrap: 'wrap',
     width: '95%',
-    paddingHorizontal: 10,
   }}>
-    <Chip style={styles.chip} icon={() => <FontAwesomeIcon icon={faCheck} size={20} color="" />}>Home</Chip>    
-    <Chip style={styles.chip} icon="information" onPress={()=>{}}>Example Chip</Chip>
-    <Chip style={styles.chip} icon="information" onPress={()=>{}}>Chip Chip Chip</Chip>
-    <Chip style={styles.chip} icon="information" onPress={()=>{}}>Example Chip Chip Chip</Chip>
-    <Chip style={styles.chip} icon="information" onPress={()=>{}}>Example Chip</Chip>
-    <Chip style={styles.chip} icon="information" onPress={()=>{}}>Example Chip Chip Chip</Chip>
-    <Chip style={styles.chip} icon="information" onPress={()=>{}}>Example</Chip>
+   <TouchableOpacity>
+    <Chip style={styles.chip} icon={() => 
+          <FontAwesomeIcon icon={faCheck} size={20} color="" />
+      }>Example</Chip>
+   </TouchableOpacity>
+   <TouchableOpacity>
+    <Chip style={styles.chip} icon={() => 
+          <FontAwesomeIcon icon={faCar} size={20} color="" />
+      }>Example Example Example</Chip>
+   </TouchableOpacity>
+   <TouchableOpacity>
+    <Chip style={styles.chip} icon={() => 
+          <FontAwesomeIcon icon={faCake} size={20} color="" />
+      }>Example Example</Chip>
+   </TouchableOpacity>
+   <TouchableOpacity>
+    <Chip style={styles.chip} icon={() => 
+          <FontAwesomeIcon icon={faDashboard} size={20} color="" />
+      }>Example</Chip>
+   </TouchableOpacity>
+   <TouchableOpacity>
+    <Chip style={styles.chip} icon={() => 
+          <FontAwesomeIcon icon={faFaceAngry} size={20} color="" />
+      }>Example Example Example</Chip>
+   </TouchableOpacity>    
   </View>
   </View>
 );
-
-export default MyComponent;
+}
+export default Search;
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    paddingTop: 40,
     alignItems: 'center',
-    justifyContent: 'center',
+    backgroundColor: 'black',
   },
   chip : {
     margin : 4,
+  },
+  textInput : {
+    width : '90%' ,
+    height : 40,
+    backgroundColor : 'white',
+    borderRadius : 10,
+    marginTop : 10,
+    marginBottom : 10,
+    paddingLeft : 10,
+    opacity : 0.7,
+    borderWidth : 5,
+    borderColor : 'white',
+  },
+  headerContainer : {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    width: '95%',
+    alignItems: 'center',
   }
 });

@@ -6,10 +6,25 @@ import listUser from '../data/dataUser'
 
 import {useNavigation} from '@react-navigation/native';
 
+import { useSelector } from 'react-redux';
+
 const height = Dimensions.get('window').height;
 const width = Dimensions.get('window').width;
 
 const Bio = () => {
+  
+    const mode = useSelector((state) => state.mode.mode);
+    const colors = useSelector((state) => {
+      switch (mode) {
+        case 'dark':
+          return state.theme.darkColors;
+        case 'light':
+          return state.theme.lightColors;
+        default:
+          return state.theme.defaultColors;
+      }
+    }
+    );
 
 const navigation = useNavigation();
 
@@ -23,19 +38,33 @@ const navigation = useNavigation();
        <View style={{
         width: width,
       }}>
-      <View style={styles.bioContainer}>
+      <View style={[
+        {backgroundColor: colors.background},
+        styles.bioContainer]}>
         <View style={styles.coverImage}>
           <Image source={require('../assets/LOL/cover/3.jpg')} style={{width: '100%', height: '100%'}} />
         </View>
         <View style={styles.avatar}>
           <Image source={require('../assets/LOL/cover/3.jpg')} style={{width: '100%', height: '100%'}} />
         </View>
-        <View style={styles.profile}>
-          <Text style={styles.name}>Nguyen Van A</Text>
-          <Text style={styles.profileText}>Male</Text>
-          <Text style={styles.profileText}>Address</Text>
-          <Text style={styles.profileText}>Phone</Text>
-          <Text style={styles.profileText}>Email</Text>
+        <View style={[
+          {backgroundColor: colors.background},
+          styles.profile]}>
+          <Text style={[
+            {color: colors.text},
+            styles.name]}>Nguyen Van A</Text>
+          <Text style={[
+            {color: colors.text},
+            styles.profileText]}>Male</Text>
+          <Text style={[
+            {color: colors.text},
+            styles.profileText]}>Address</Text>
+          <Text style={[
+            {color: colors.text},
+            styles.profileText]}>Phone</Text>
+          <Text style={[
+            {color: colors.text},
+            styles.profileText]}>Email</Text>
           <TouchableOpacity 
           onPress={() => navigation.navigate('EditProfile')}
           style={styles.editProfileButton}>
@@ -81,7 +110,6 @@ const styles = StyleSheet.create({
   coverImage: {
     width: width,
     height: 200,
-    backgroundColor: '#808080',
     alignItems: 'center',
     justifyContent: 'center',
   },
@@ -90,7 +118,6 @@ const styles = StyleSheet.create({
     width: 150,
     height: 150,
     borderRadius: 75,
-    backgroundColor: '#808080',
     position: 'absolute',
     top: 100,
     left: '35%',
@@ -103,7 +130,6 @@ const styles = StyleSheet.create({
     height: 'fit-content',
     paddingTop: 60,
     paddingBottom: 20,
-    backgroundColor: '#3c3c3c',
   },
   name : {
     fontSize: 20,
@@ -116,7 +142,6 @@ const styles = StyleSheet.create({
   profileText: {
     fontSize: 16,
     marginLeft: 10,
-    color: '#fff',
   },
   scrollContainer: {
     width: width,

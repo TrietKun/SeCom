@@ -16,44 +16,44 @@ const Chat = ({ navigation }) => {
     const signOutNow = () => {
    
     }
-    useLayoutEffect(() => {
-        navigation.setOptions({
-          headerShown: true,
-          header: () => (
-            <View style={styles.customHeader}>
-                <View style={{
-                    flexDirection: 'row',
-                    alignItems: 'center',
-                    marginLeft: 40,
-                }}>
-                    <Avatar rounded source={require('../assets/logo2.png')} />
-                    <Text style={styles.headerText}>Kazuha</Text>
-                </View>
-                <View style={{
-                    position: 'absolute',
-                    marginLeft: 10,
-                }}>
-                    <TouchableOpacity
-                      onPress={() => navigation.navigate('Chat')}
-                    >
-                        <FontAwesomeIcon icon={faArrowLeft} size={20} color="#fff" style={styles.iconHeader} />
-                    </TouchableOpacity>
-                </View>
-                <View style={{
-                    flexDirection: 'row',
-                    alignItems: 'center',
-                    marginLeft: 10,
-                }}>
-                    <TouchableOpacity>
-                      <FontAwesomeIcon icon={faPhone} size={20} color="#fff" style={styles.iconHeader} />
-                    </TouchableOpacity>
-                    <FontAwesomeIcon icon={faCamera} size={20} color="#fff" style={styles.iconHeader} />
-                    <FontAwesomeIcon icon={faCircleInfo} size={20} color="#fff" style={styles.iconHeader} />
-                </View>
-            </View>
-          ),
-        });
-      }, [navigation]);
+    // useLayoutEffect(() => {
+    //     navigation.setOptions({
+    //       headerShown: true,
+    //       header: () => (
+    //         <View style={styles.customHeader}>
+    //             <View style={{
+    //                 flexDirection: 'row',
+    //                 alignItems: 'center',
+    //                 marginLeft: 40,
+    //             }}>
+    //                 <Avatar rounded source={require('../assets/logo2.png')} />
+    //                 <Text style={styles.headerText}>Kazuha</Text>
+    //             </View>
+    //             <View style={{
+    //                 position: 'absolute',
+    //                 marginLeft: 10,
+    //             }}>
+    //                 <TouchableOpacity
+    //                   onPress={() => navigation.navigate('Chat')}
+    //                 >
+    //                     <FontAwesomeIcon icon={faArrowLeft} size={20} color="#fff" style={styles.iconHeader} />
+    //                 </TouchableOpacity>
+    //             </View>
+    //             <View style={{
+    //                 flexDirection: 'row',
+    //                 alignItems: 'center',
+    //                 marginLeft: 10,
+    //             }}>
+    //                 <TouchableOpacity>
+    //                   <FontAwesomeIcon icon={faPhone} size={20} color="#fff" style={styles.iconHeader} />
+    //                 </TouchableOpacity>
+    //                 <FontAwesomeIcon icon={faCamera} size={20} color="#fff" style={styles.iconHeader} />
+    //                 <FontAwesomeIcon icon={faCircleInfo} size={20} color="#fff" style={styles.iconHeader} />
+    //             </View>
+    //         </View>
+    //       ),
+    //     });
+    //   }, [navigation]);
 
     const onSend = useCallback((messages = []) => {
         setMessages(previousMessages => GiftedChat.append(messages, previousMessages))

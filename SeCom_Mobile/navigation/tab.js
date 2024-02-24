@@ -2,27 +2,40 @@ import React from 'react';
 import Home from '../screens/Home';
 import Bio from '../screens/Bio';
 import Chat from '../screens/Chat';
-import Conversation from '../screens/Conversation';
-import VideoCall from '../screens/VideoCall';
-import EditProfile from '../screens/EditProfile';
+import Settings from '../screens/Setting';
+import TestTabView from '../screens/TabViewChat';
 import Test from '../screens/Test';
 
-
 import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome'
-import { faHome,faComment, faUser, faPhone , faCamera} from '@fortawesome/free-solid-svg-icons';
-
-// import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
+import { faHome,faComment, faUser, faPhone , faCamera,faBars} from '@fortawesome/free-solid-svg-icons';
 import { createMaterialTopTabNavigator } from '@react-navigation/material-top-tabs';
+import { Badge } from 'react-native-paper';
+import { View } from 'react-native';
 
-// const Tab = createBottomTabNavigator();
+import { useSelector } from 'react-redux';
+
 const Tab = createMaterialTopTabNavigator();
 
 function MyTabs() {
+
+const mode = useSelector((state) => state.mode.mode);
+const colors = useSelector((state) => {
+  switch (mode) {
+    case 'dark':
+      return state.theme.darkColors;
+    case 'light':
+      return state.theme.lightColors;
+    default:
+      return state.theme.defaultColors;
+  }
+}
+);
+
   return (
     <Tab.Navigator 
     screenOptions={{
-      tabBarStyle: { backgroundColor: '#3c3c3c' },      
-      tabBarActiveTintColor: 'white',
+      tabBarStyle: { backgroundColor: colors.background},      
+      tabBarActiveTintColor: colors.iconActive,
       tabBarInactiveTintColor: '#808080',
       tabBarIndicatorStyle: {
         backgroundColor: '#808080',
@@ -43,10 +56,13 @@ function MyTabs() {
         />
         <Tab.Screen 
             name="Chat" 
-            component={Chat} 
+            component={TestTabView} 
             options={{
                 tabBarIcon: ({ color }) => (
-                  <FontAwesomeIcon icon={faComment} size={25} color={color} />
+                  <View>
+                    <FontAwesomeIcon icon={faComment} size={25} color={color} />
+                    <Badge style={{ position: 'absolute', top: -7, right: -10 }}>3</Badge>
+                  </View>
                 ),
                 tabBarShowLabel: false,
             }}
@@ -61,26 +77,26 @@ function MyTabs() {
                 tabBarShowLabel: false,
             }}
         />
-           {/* <Tab.Screen 
-            name="VideoCall" 
-            component={VideoCall} 
+        <Tab.Screen
+            name="Setting"
+            component={Settings}
             options={{
                 tabBarIcon: ({ color }) => (
-                  <FontAwesomeIcon icon={faPhone} size={25} color={color} />
+                  <FontAwesomeIcon icon={faBars} size={25} color={color} />
+                ),
+                tabBarShowLabel: false,
+            }}
+        />
+        {/* <Tab.Screen
+            name="Test"
+            component={Test}
+            options={{
+                tabBarIcon: ({ color }) => (
+                  <FontAwesomeIcon icon={faCamera} size={25} color={color} />
                 ),
                 tabBarShowLabel: false,
             }}
         /> */}
-      <Tab.Screen
-        name="Test"
-        component={Test}
-        options={{
-          tabBarIcon: ({ color }) => (
-            <FontAwesomeIcon icon={faCamera} size={25} color={color} />
-          ),
-          tabBarShowLabel: false,
-        }}
-      />
     </Tab.Navigator>
   );
 }
